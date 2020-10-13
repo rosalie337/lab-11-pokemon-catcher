@@ -1,12 +1,11 @@
-// import functions and grab DOM elements
+
 import { rawPokemonData } from './pokemon-data.js';
 
 const picture = document.querySelectorAll('label > img');
 const radios = document.querySelectorAll('input');
-
 const moreButton = document.querySelector('button');
 
-// initialize state
+
 
 let capturedPokemon = 0;
 let encounteredPokemon = 0;
@@ -48,6 +47,7 @@ function renderPokemon() {
     radios[2].value = thirdPokemon.id;
     picture[2].src = thirdPokemon.url_image;
 
+
 }
 
 renderPokemon();
@@ -67,3 +67,5 @@ moreButton.addEventListener('click', () => {
 });
   
  
+
+
