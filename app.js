@@ -1,13 +1,3 @@
-// import functions and grab DOM elements
-import { pokemonData } from './pokemon.js';
-import { 
-    getRandomPkm, 
-    encounteredPokemon,  
-    incrementor, 
-    resultScreenActivator
-} from './utils.js';
-// initialize state
-
 
 const submitButton = document.getElementById('submit-button');
 
@@ -29,36 +19,6 @@ let clickCounter = 10;
 let pkmEncountered = [];
 let caughtPokemon = [];
 let allTimeResults;
-
-//////////////////////////set-page
-function setPage() {
-    if (remainingPkm.length === 1) {
-        alert('show results');  
-    }
-    const randomPkm1 = getRandomPkm(remainingPkm);
-    let randomPkm2 = getRandomPkm(remainingPkm);
-    let randomPkm3 = getRandomPkm(remainingPkm);
-
-    while (randomPkm1.id === randomPkm2.id || randomPkm1.id === randomPkm3.id || randomPkm2.id === randomPkm3.id) {
-        randomPkm2 = getRandomPkm(remainingPkm);
-        randomPkm3 = getRandomPkm(remainingPkm);
-    }
-
-    const randomZero = Math.random(Math.random());
-    const randomOne = Math.random(Math.random(randomZero));
-    if (randomZero === 0) {
-        correctAnswer = randomPkm1;
-    } else if (randomOne === 1) {
-        correctAnswer = randomPkm2;
-    } else {
-        correctAnswer = randomPkm3;
-    }
-    answerDiv.textContent = correctAnswer.name;
-
-    encounteredPokemon(pkmEncountered, randomPkm1.id);
-    encounteredPokemon(pkmEncountered, randomPkm2.id);
-    encounteredPokemon(pkmEncountered, randomPkm3.id);
-
 
 /////////////////grabbed images
     image1.src = randomPkm1.url_image;
@@ -116,17 +76,3 @@ submitButton.addEventListener('click', () => {
 
     resultScreenActivator(clickCounter);
 });
-
-setPage();
-
-export function saveToLocalStorage(dataStorage) {
-    const newStoredPkm = JSON.stringify(dataStorage);
-
-    localStorage.setItem('STORAGE', newStoredPkm);
-}
-
-export function savePermaInformation(permaInfo) {
-    const permaStorage = JSON.stringify(permaInfo);
-
-    localStorage.setItem('PKM-STATS', permaStorage);
-}
