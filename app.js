@@ -7,12 +7,15 @@ import {
     resultScreenActivator
 } from './utils.js';
 // initialize state
+
+
 const submitButton = document.getElementById('submit-button');
+
 const answerDiv = document.getElementById('#answer');
 
 const radio1 = document.getElementById('input1');
-const radio2 = document.getElementById('inpute2');
-const radio3 = document.getElementById('inpute3');
+const radio2 = document.getElementById('input2');
+const radio3 = document.getElementById('input3');
 
 const image1 = document.getElementById('image1');
 const image2 = document.getElementById('image2');
@@ -71,8 +74,8 @@ function setPage() {
     radio2.textContent = randomPkm2.pokemon;
 
 ///////radio3
-    radio1.value = randomPkm2.id;
-    radio1.textContent = randomPkm2.pokemon;
+    radio3.value = randomPkm3.id;
+    radio3.textContent = randomPkm3.pokemon;
 
 
 
@@ -97,13 +100,15 @@ function setPage() {
 ////////////////
 submitButton.addEventListener('click', () => {
     const playersChoice = document.querySelector('input[type = radio]:checked');
+    const chosenPkm = playersChoice.value;
+    
     incrementor(caughtPokemon, chosenPkm);
     incrementor(pkmEncountered, chosenPkm);
     incrementor(allTimeResults, chosenPkm);
 
     saveToLocalStorage(caughtPokemon);
     saveToLocalStorage(pkmEncountered);
-    savePermInformation(allTimeResults);
+    savePermaInformation(allTimeResults);
 
     setPage();
 
