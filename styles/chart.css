@@ -2,27 +2,27 @@
 body {
     --color1: #ffffff;
     --color2: #ffffff;
-    --color3: yellow;
+    --color3: #06539b;
     --color4: #ffffff;
     --color5: #ffffff;
     
-    --header-height: 100px;
-    --shadow: 1px 10px 20px 12px rgba(209, 206, 32, 0.45);
+    --header-height: 80px;
+    --shadow: 0px 10px 20px -12px rgba(0,0,0,0.45);
     --gutter: 30px;
-    --footer-height: 80px;
+    --footer-height: 25px;
     
-    font-family: 'Commissioner', sans-serif;
-    background-color: var(--color2);
-    background-image: url('../chart.png');
+    font-family: 'fantasy', sans-serif;
+    
+    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSEftXk2OXxL2ZWEKc-mNPfy-hPFaQCfAQuaw&usqp=CAU');
 }
 
-.hidden {
+/* .hidden {
     display: none;
 }
 
 label > img {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     margin: 30px;
 }
 
@@ -31,9 +31,15 @@ label > input {
 }
 
 :checked + img {
-    border: solid 10px yellow;
- 
- 
+    border: solid 5px #CC0000;
+    border-radius: 180px;
+    /* background-image: url('../assets/Poke_Ball.png'); */
+
+label {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: black;
+        
 }
 
 main {
@@ -42,11 +48,11 @@ main {
     justify-content: center;
     align-items: center;
     margin-bottom: calc(var(--footer-height));
+    
 }
 
 section {
-    /* background-color: var(--color5); */
-    background-color: rgba(255, 255, 255, 0.90);
+    background-color: var(--color2);
     width: 1000px;
     max-width: 80%;
     display: flex;
@@ -57,7 +63,7 @@ section {
     padding-bottom: var(--gutter);
     margin-top: var(--gutter);
     margin-bottom: var(--gutter);
-    border: solid 5px var(--color3);
+    border: solid 2px var(--color1);
 }
 
 header {
@@ -73,15 +79,12 @@ footer {
     justify-content: flex-end;
     background-color: var(--color3);
     box-shadow: var(--shadow);
-    --shadow: 1px 10px 20px 12px rgba(209, 206, 32, 0.45);
 }
 
 
 h2 {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: bold;
-    color: blue;
-
 }
 
 .gutter-right {

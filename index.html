@@ -5,27 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Commissioner:wght@100&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/home.css">
-    <title>Document</title>
+    <title>pokemon game page</title>
 </head>
 
 <body>
     <header>
+        <a href='./results/'>RESULTS</a><br>
         <div class="gutter-right logo">
-         
+           <img src="/home.png" alt="GOTTA CATCH THEM ALL" title="GOTTA CATCH THEM ALL"width= 100>
         </div>
     </header>
     <main>
         <section class="main-section">
-            <h1>Try to catch them all</h1>
-            <div id="choices">
+           <h2>Can you catch them all</h2> 
+            <div id="three-choices">
                 <label>
-                   <input type="radio" name="pokemon"/>
+                    <input type="radio" name="pokemon"/>
                     <img />
-              
                 </label>
                 <label>
                     <input type="radio" name="pokemon"/>
@@ -37,13 +37,13 @@
                 </label>
             </div>
             <div id="caught-div" class="hidden">
-                <div id="captured-Pkd"></div>
+                <div id="captured-pokemon"></div>
                 <button>Catch More</button>
             </div>
         </section>
     </main>
     <footer>
-        <div class="copy gutter-right">&copy; 2020 Alchemy Code Lab</div>
+        <div class="copy gutter-right">&copy; 2020 Sarahs Pokemon Game</div>
     </footer>
 
     <script type="module" src="app.js"></script>

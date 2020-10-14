@@ -1,127 +1,89 @@
+// import functions and grab DOM elements
+import { rawPokemonData } from './pokemon-data.js';
+import { randomPokemon, findById, putInLocalStorage } from './pokemon-utils.js';
+// import { images, radios, caughtDiv, moreButton } from './pokemon-const.js';
 
-import { pokemonResults, rawPokemonData } from './pokemon-data.js';
+export const images = document.querySelectorAll('label > img');
+export const radios = document.querySelectorAll('input');
+export const caughtDiv = document.querySelector('#caught-div');
+export const moreButton = document.querySelector('button');
+//Add back it if you get a chance to render pokemon neam on UX
 
-const picture = document.querySelectorAll('label > img');
-const radios = document.querySelectorAll('input');
 
+// initialize state
+let captures = 10;
+let pokemonResults = [];
+let encounters = 0;
+// RenderPokemon Fuction 
+export function renderPokemon() {
 
-
-
-let capturedPokemon = 0;
-let encounteredPokemon = 0;
-
+    let firstPokemon = randomPokemon(rawPokemonData);
+    let secondPokemon = randomPokemon(rawPokemonData);
+    let thirdPokemon = randomPokemon(rawPokemonData);
+    
+    while (firstPokemon.id === secondPokemon.id || secondPokemon.id === thirdPokemon.id || thirdPokemon.id === firstPokemon.id) {
+        firstPokemon = randomPokemon(rawPokemonData);
+        secondPokemon = randomPokemon(rawPokemonData);
+        thirdPokemon = randomPokemon(rawPokemonData);
+    }
+   
+    
+    radios[0].value = firstPokemon.pokemon;
+    images[0].src = firstPokemon.url_image;
+    
+    radios[1].value = secondPokemon.pokemon;
+    images[1].src = secondPokemon.url_image;
+    
+    radios[2].value = thirdPokemon.pokemon;
+    images[2].src = thirdPokemon.url_image;
+}
 renderPokemon();
 
-
-
-function getRandomPokemon(someArray) {
-    const index = Math.floor(Math.random() * someArray.length);
-
-    alert('getRandomPokemon');
-    return someArray[index];
-}
-
- 
-
-function renderPokemon() {
-    alert('renderPokemon');
-    let firstPokemon = getRandomPokemon(rawPokemonData);
-    let secondPokemon = getRandomPokemon(rawPokemonData);
-    let thirdPokemon = getRandomPokemon(rawPokemonData);
-    
-    while (firstPokemon.id === secondPokemon.id) {
-        firstPokemon = getRandomPokemon(rawPokemonData);
-    }
-    while (secondPokemon.id === thirdPokemon.id) {
-        secondPokemon = getRandomPokemon(rawPokemonData);
-    }
-    while (thirdPokemon.id === firstPokemon.id) {
-        thirdPokemon = getRandomPokemon(rawPokemonData);
-    }
-    
-    radios[0].value = firstPokemon.id;
-    picture[0].src = firstPokemon.url_image;
-    
-
-    radios[1].value = secondPokemon.id;
-    picture[1].src = secondPokemon.url_image;
-    
-    radios[2].value = thirdPokemon.id;
-    picture[2].src = thirdPokemon.url_image;
-
-    /*for (let i = 0; i < radios.length; i++) {
-        alert(i);
-     
-        const newPokemon = {
-            id: radios.id[i],
-            picture: picture[i],
-            encountered: 1,
-            captured: 0,
-          
-        
-        };
-    alert(newPokemon);
-        //addNewPokemon(newPokemon);
-    }*/
-
-}
-//////call function///localstorage
-///////we need to add to our data model which is encountered and caught
-///////need pokemon name, encountered+1, captured=0
-/////////check if row exists, if exists then add on to encountered
-
-
-
-//////////////
-export function addNewPokemon(newRow) {
-   
-    const localStorageItems = getLocalStorageItems();
-   
-    localStorageItems.push(newRow);
-  
-    const stringyLocalItems = JSON.stringify(localStorageItems);
-   //alert('stringyLocalItems' + stringyLocalItems);
-    localStorage.setItem(pokemonResults, stringyLocalItems);
-      
-}
-
-
-
-//////////////////////////////////////
-export function getLocalStorageItems() {
-    let localStorageItems = JSON.parse(localStorage.getItem(pokemonResults));
-
-  
-  /*  if (!localStorageItems) {
-        
-        const stringyItems = JSON.stringify(rawPokemonData);
-
-        localStorage.setItem(PRODUCTS, stringyItems);
-        localStorageItems = hardCodedHair;
-    }*/
-
-    return localStorageItems;
-}
 // set event listeners to update state and DOM
+///////encountered
 for (let i = 0; i < radios.length; i++) {
-    radios[i].addEventListener('click', () => {
-        alert('**************');
-        alert('radios[i].value. ' + radios[i].value);
+    radios[i].addEventListener('change', (e) => {	
+        
 
-//////call function////localStorage
-////loop threw data model untill you find the right one and add one to captured 
-        capturedPokemon++;
+        caughtDiv.classList.remove('hidden');
 
-        encounteredPokemon++;
-  
-        encounteredPokemon++;
-
-        encounteredPokemon++;
-   
-        renderPokemon();
+        radios.forEach((radio) => {
+            let encounteredPokemon = findById(pokemonResults, radio.value);
+            if (!encounteredPokemon) {
+                encounteredPokemon = {
+                    pokeName: radio.value,
+                    encountered: 1, 
+                    captured: 0 
+                },
+                pokemonResults.push(encounteredPokemon);
+            } else {
+                encounteredPokemon.encountered++;
+            }
+           
+        });
+/////////captured
+        for (let i = 0; i < radios.length; i++) {
+            radios[i].disabled = true;
+            images[i].style.opacity = .5;
+        }
+        let capturedPokemon = findById(pokemonResults, e.target.value);
+        capturedPokemon.captured++;
+        putInLocalStorage('RESULTS', pokemonResults);
     });
-  
 }
+/////////////
 
-
-
+/////////////////more button event listener
+moreButton.addEventListener('click', () => {
+    captures--;
+    for (let i = 0; i < radios.length; i++) {
+        radios[i].disabled = false;
+        images[i].style.opacity = 100;
+    }
+    if (captures === 0) { 
+        window.location.href = './results/index.html';
+    }
+    renderPokemon();
+    alert(captures);
+   
+});
