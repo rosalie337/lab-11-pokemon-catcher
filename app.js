@@ -92,6 +92,6 @@ moreButton.addEventListener('click', () => {
         window.location.href = './results/index.html';
     }
     renderPokemon();
-    alert(captures);
+   
    
 });

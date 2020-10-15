@@ -1,6 +1,6 @@
 import { rawPokemonData } from './pokemon-data.js';
 
-alert(randomPokemon);
+
 
 export function randomPokemon(someArray) {
     const index = Math.floor(Math.random() * someArray.length);
@@ -9,7 +9,7 @@ export function randomPokemon(someArray) {
 }
 
 
-alert('**************');
+
 // Find Captured Pokemon By ID function to push into capturedPokemonArray for results
 export function findById(pokemonResults, pokemonName) {
 
@@ -23,7 +23,9 @@ export function findById(pokemonResults, pokemonName) {
     }
 }
 ///////////////new pokemon
+
 export function getNewEncounter(someArray, pokeName) {
+
     let pokeData = findById(rawPokemonData, pokeName);
     const encounteredPokemon = {
         pokemon: pokeData.pokemon,

@@ -7,6 +7,7 @@ const resultsArray = grabFromLocalStorage('RESULTS');
 const resetButton = document.getElementById('new-button');
 resetButton.addEventListener('click', ()=> {
     localStorage.clear();
+ 
     window.location = '../index.html';
 
 });
