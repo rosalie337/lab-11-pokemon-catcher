@@ -28,6 +28,7 @@ export function getNewEncounter(someArray, pokeName) {
     const encounteredPokemon = {
         pokemon: pokeData.pokemon,
         pokeImg: pokeData.url_image,
+
         encountered: 0, 
         captured: 0
     };
@@ -78,12 +79,17 @@ export function tableData(arr, item) {
     });
     return returnArray;
 }
+///////////////////////////
+
+
+
+
 /////////////////////////////building tables
 export function buildTable(resultsArray) {
     const capturedTable = document.getElementById('captured');
     const encounteredTable = document.getElementById('encountered');
     resultsArray.forEach(pokemon => {
-       
+        const url = pokemon.pokeImg;
         const timesCaptured = pokemon.captured;
         const timesEncountered = pokemon.encountered;
         const rowEl = document.createElement('tr');
@@ -92,7 +98,7 @@ export function buildTable(resultsArray) {
         const imgEl = document.createElement('img');
         const encounteredEl = document.createElement('td');
         
-      
+        imgEl.src = url;
         imgEl.alt = `Picture of ${name}`;
         imgEl.style.width = '50px';
         encounteredEl.textContent = timesEncountered;
