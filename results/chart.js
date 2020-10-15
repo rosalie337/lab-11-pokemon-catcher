@@ -1,28 +1,38 @@
 
-import { grabFromLocalStorage } from '../pokemon-utils.js';
+import { grabFromLocalStorage, buildTable } from '../pokemon-utils.js';
 
 const resultsArray = grabFromLocalStorage('RESULTS');
+
+const resetButton = document.getElementById('new-button');
+resetButton.addEventListener('click', ()=> {
+    window.location = '../index.html';
+});
 ////////////////grabbing results from local storage to show in a graph
 
+
+buildTable(resultsArray);
+
+
+
+//////////////////////////////
 var ctx = document.getElementById('myChart').getContext('2d');
 /////////////adding the names
-const pokemonName = resultsArray.map((item) => {
+const pokeName = resultsArray.map((item) => {
     return item.pokeName;
 
 });
 ////////////////////adding caught to graph
 const caught = resultsArray.map((item) => {
     return item.captured;
+   
 });
 ////////////Adding encountered to graph
-const encounter = resultsArray.map((item) =>{
-    return item.encoutered;
-});
+
 
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: pokemonName,
+        labels: pokeName,
         datasets: [{
             label: '# of Captured Pokemon',
             data: caught,

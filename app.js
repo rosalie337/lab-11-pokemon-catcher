@@ -1,6 +1,6 @@
 // import functions and grab DOM elements
 import { rawPokemonData } from './pokemon-data.js';
-import { randomPokemon, findById, putInLocalStorage } from './pokemon-utils.js';
+import { randomPokemon, findById, putInLocalStorage, addingCaptures, addingEncounters } from './pokemon-utils.js';
 // import { images, radios, caughtDiv, moreButton } from './pokemon-const.js';
 
 export const images = document.querySelectorAll('label > img');
@@ -30,12 +30,15 @@ export function renderPokemon() {
     
     radios[0].value = firstPokemon.pokemon;
     images[0].src = firstPokemon.url_image;
-    
+    radios[0].checked = false;
+
     radios[1].value = secondPokemon.pokemon;
     images[1].src = secondPokemon.url_image;
-    
+    radios[1].checked = false;
+
     radios[2].value = thirdPokemon.pokemon;
     images[2].src = thirdPokemon.url_image;
+    radios[2].checked = false;
 }
 renderPokemon();
 
@@ -63,11 +66,16 @@ for (let i = 0; i < radios.length; i++) {
         });
 /////////captured
         for (let i = 0; i < radios.length; i++) {
+            addingEncounters(pokemonResults, radios[0].value);
+            addingEncounters(pokemonResults, radios[1].value);
+            addingEncounters(pokemonResults, radios[2].value);
+
+            caughtDiv.classList.remove('hidden');
             radios[i].disabled = true;
             images[i].style.opacity = .5;
         }
-        let capturedPokemon = findById(pokemonResults, e.target.value);
-        capturedPokemon.captured++;
+        addingCaptures(pokemonResults, e.target.value);
+        addingCaptures.captured++;
         putInLocalStorage('RESULTS', pokemonResults);
     });
 }

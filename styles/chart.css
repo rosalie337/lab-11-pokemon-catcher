@@ -3,7 +3,7 @@ body {
     --color1: #ffffff;
     --color2: #ffffff;
     --color3: #06539b;
-    --color4: #ffffff;
+    --color4: #bccb3a;
     --color5: #ffffff;
     
     --header-height: 80px;
@@ -16,24 +16,7 @@ body {
     background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSEftXk2OXxL2ZWEKc-mNPfy-hPFaQCfAQuaw&usqp=CAU');
 }
 
-/* .hidden {
-    display: none;
-}
 
-label > img {
-    width: 200px;
-    height: 200px;
-    margin: 30px;
-}
-
-label > input {
-    display: none;
-}
-
-:checked + img {
-    border: solid 5px #CC0000;
-    border-radius: 180px;
-    /* background-image: url('../assets/Poke_Ball.png'); */
 
 label {
         font-size: 1.8rem;
